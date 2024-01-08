@@ -1,9 +1,8 @@
 import React from 'react';
 import { useState } from "react";
-import {Link } from "react-router-dom";
 import "./NewData.css"
 import {createData} from "./services/crud";
-
+import Swal from 'sweetalert2';
 const NewData= () => {
 
     const [user,setUser] = useState({
@@ -22,7 +21,10 @@ const NewData= () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         createData(user).then(() => {
-          alert("Usuario Creado!");
+          Swal.fire("Usuario Creado!", "Tu usuario ha sido creado.", "success");
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 1200);
         });
       }
 
@@ -36,7 +38,6 @@ const NewData= () => {
                 <label>Correo</label>
                 <input type="email" name="email" placeholder="Correo" onChange={handleInputChange}/>
                 <button type="submit" onClick={handleSubmit}>Crear Usuario ➕</button>
-                <button><Link to="/">Volver</Link></button>
             </form>
         </div>
     )

@@ -2,6 +2,7 @@ import {Link } from "react-router-dom";
 import {getData, deleteData} from "./services/crud";
 import "./App.css";
 import React from "react";
+import Swal from "sweetalert2";
 
 const App = ()=>{
   const [data, setData] = React.useState(null);
@@ -15,9 +16,23 @@ const App = ()=>{
   if (!data) return null;
 
   const BorrarUsuario = (id) => {
-    deleteData(id).then(() => {
-      alert("Fila Eliminada!");
-    window.location.reload();
+    Swal.fire({
+      title: "¿Estas seguro?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Si, borrar!",
+      cancelButtonText: "No, cancelar!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteData(id).then(() => {
+          Swal.fire("Borrado!", "Tu usuario ha sido borrado.", "success");
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 1200);
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire("Cancelado", "Tu usuario esta a salvo :)", "error");
+      }
     });
   }
 

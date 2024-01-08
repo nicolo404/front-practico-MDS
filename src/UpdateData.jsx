@@ -1,6 +1,7 @@
 import React from "react";
 import {updateData} from "./services/crud";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 const UpdateData = () => {
     const { id } = useParams();
     console.log(id);
@@ -17,8 +18,10 @@ const UpdateData = () => {
         event.preventDefault();
         console.log(data)
         updateData(id, data).then(() => {
-          alert("Usuario Actualizado!");
-          window.location.href = "/";
+            Swal.fire("Usuario Actualizado!", "Tu usuario ha sido actualizado.", "success");
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 1200);
         });
       } 
       
