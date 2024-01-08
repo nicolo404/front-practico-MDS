@@ -1,33 +1,30 @@
 import axios from "axios";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {Link } from "react-router-dom";
+import {getData, deleteData} from "./services/crud";
 import "./App.css";
 import React from "react";
-//api
-const baseURL = "http://localhost:3001/api/";
 
 const App = ()=>{
   const [data, setData] = React.useState(null);
+  
   React.useEffect(() => {
-    axios.get(baseURL+'obtener-usuarios').then((response) => {
-      setData(response.data);
-      console.log(response.data.usuarios);
+    getData().then((response) => {
+      setData(response);
     });
   }, []);
 
   if (!data) return null;
 
   const BorrarUsuario = (id) => {
-    axios.delete(baseURL + "/eliminar-usuario/" + id).then((response) => {
-      console.log(response.data.mensaje);
+    deleteData(id).then(() => {
       alert("Fila Eliminada!");
     window.location.reload();
     });
-  };
+  }
   //
   return (
     <div>
-      <h1>Usuarios</h1>
-      <button >Crear Usuario ➕</button>
+      <button ><Link to="crear-usuario">Crear Usuario ➕</Link></button>
       <table>
         <thead>
           <tr>
@@ -39,7 +36,7 @@ const App = ()=>{
         </thead>
         <tbody>
           {data.usuarios.map((usuario) => (
-            <tr key={usuario.id}>
+            <tr key={usuario._id}>
               <td>{usuario.nombre}</td>
               <td>{usuario.edad}</td>
               <td>{usuario.email}</td>
