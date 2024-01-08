@@ -17,5 +17,10 @@ const createData = async (user) => {
   return response;
 }
 
+const updateData = async (id, user) => {
+  const { user: response } = await axios.put(`http://localhost:3001/api/actualizar-usuario/${id}`, user);
+  return response;
+}
 
-export { getData, deleteData, createData };
+
+export { getData, deleteData, createData, updateData};

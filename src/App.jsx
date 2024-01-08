@@ -1,4 +1,3 @@
-import axios from "axios";
 import {Link } from "react-router-dom";
 import {getData, deleteData} from "./services/crud";
 import "./App.css";
@@ -21,10 +20,11 @@ const App = ()=>{
     window.location.reload();
     });
   }
-  //
+
   return (
     <div>
       <button ><Link to="crear-usuario">Crear Usuario ➕</Link></button>
+      <br/>
       <table>
         <thead>
           <tr>
@@ -43,7 +43,7 @@ const App = ()=>{
               <td><button  onClick={()=>{
                 BorrarUsuario(usuario._id)}} 
                   >Borrar</button>
-                  <button>Editar</button>
+                  <button><Link to={`editar-usuario/${usuario._id}`}>Editar</Link></button>
               </td>
             </tr>
           ))}
