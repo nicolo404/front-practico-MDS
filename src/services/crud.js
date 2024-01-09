@@ -7,6 +7,12 @@ const getData = async () => {
   return data;
 }
 
+const getDataById = async (id) => {
+  const { data } = await axios.get(`${baseURL}obtener-usuario/${id}`);
+  console.log(data);
+  return data.usuario;
+}
+
 const deleteData = async (id) => {
   const { data } = await axios.delete(`${baseURL}eliminar-usuario/${id}`);
   return data;
@@ -23,4 +29,4 @@ const updateData = async (id, user) => {
 }
 
 
-export { getData, deleteData, createData, updateData};
+export { getData, deleteData, createData, updateData, getDataById};
