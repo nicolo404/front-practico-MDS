@@ -9,7 +9,6 @@ const getData = async () => {
 
 const getDataById = async (id) => {
   const { data } = await axios.get(`${baseURL}obtener-usuario/${id}`);
-  console.log(data);
   return data.usuario;
 }
 
@@ -19,12 +18,12 @@ const deleteData = async (id) => {
 }
 
 const createData = async (user) => {
-  const { user: response } = await axios.post("http://localhost:3001/api/crear-usuario/", user);
+  const { user: response } = await axios.post(`${baseURL}crear-usuario/`, user);
   return response;
 }
 
 const updateData = async (id, user) => {
-  const { user: response } = await axios.put(`http://localhost:3001/api/actualizar-usuario/${id}`, user);
+  const { user: response } = await axios.put(`${baseURL}actualizar-usuario/${id}`, user);
   return response;
 }
 
