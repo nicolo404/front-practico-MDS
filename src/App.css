@@ -23,6 +23,8 @@ table{
 th{
     background-color: #588c7e;
     color: white;
+    padding: 10px;
+    border: solid 1px #000;
 }
 
 tbody tr:hover{
@@ -48,5 +50,7 @@ button:hover{
     color: #588c7e;
     border: solid 1px #588c7e;
 }
+
+
 
 

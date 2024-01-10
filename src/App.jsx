@@ -1,5 +1,5 @@
 import {Link } from "react-router-dom";
-import {getData, deleteData} from "./services/crud";
+import {getData, deleteData, get_tbl_usuario} from "./services/crud";
 import "./App.css";
 import React from "react";
 import Swal from "sweetalert2";
@@ -8,10 +8,12 @@ const App = ()=>{
   const [data, setData] = React.useState(null);
   
   React.useEffect(() => {
-    getData().then((response) => {
+    get_tbl_usuario().then((response) => {
+      console.log(response);
       setData(response);
     });
   }, []);
+  
 
   if (!data) return null;
 
@@ -38,26 +40,28 @@ const App = ()=>{
 
   return (
     <div>
+      <h1>Tabla tbl_usuario</h1>
       <button ><Link to="crear-usuario">Crear Usuario ➕</Link></button>
       <br/>
       <table>
         <thead>
           <tr>
-            <th>Nombre</th>
-            <th>Edad</th>
-            <th>Correo</th>
-            <th>Accion</th> 
+            <th>I_IDPERFIL</th>
+            <th>S_IDUSUARIO</th>
+            <th>S_PASSWD</th>
+            <th>S_NBUSUARIO</th>
+            <th></th> 
           </tr>
         </thead>
         <tbody>
-          {data.usuarios.map((usuario) => (
-            <tr key={usuario._id}>
-              <td>{usuario.nombre}</td>
-              <td>{usuario.edad}</td>
-              <td>{usuario.email}</td>
-              <td><button  onClick={()=>{
-                BorrarUsuario(usuario._id)}} 
-                  >Borrar</button>
+          {data.map((usuario) => (
+            console.log(usuario),
+            <tr key={usuario.I_IDPERFIL}>
+              <td>{usuario. I_IDPERFIL}</td>
+              <td>{usuario.S_IDUSUARIO}</td>
+              <td>{usuario.S_PASSWD}</td>
+              <td>{usuario.S_NBUSUARIO}</td>
+              <td>
                   <button><Link to={`editar-usuario/${usuario._id}`}>Editar</Link></button>
               </td>
             </tr>

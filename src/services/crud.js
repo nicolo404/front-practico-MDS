@@ -27,5 +27,14 @@ const updateData = async (id, user) => {
   return response;
 }
 
+const get_tbl_usuario = async () => {
+  const { data } = await axios.get(baseURL+"tbl_usuario/");
+  return data;
+}
 
-export { getData, deleteData, createData, updateData, getDataById};
+const update_tbl_usuario = async (id, user) => {
+  const { user: response } = await axios.put(`${baseURL}actualizar-tbl_usuario/${id}`, user);
+  return response;
+}
+
+export { getData, deleteData, createData, updateData, getDataById, get_tbl_usuario};
