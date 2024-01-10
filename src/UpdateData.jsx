@@ -8,6 +8,7 @@ const UpdateData = () => {
 
     React.useEffect(() => {
         getDataById(id).then((response) => {
+            console.log(response);
             setData(response);
         });
     }, [id]);
@@ -25,15 +26,14 @@ const UpdateData = () => {
             Swal.fire("Usuario Actualizado!", "Tu usuario ha sido actualizado.", "success");
             setTimeout(() => {
                 window.location.href = "/";
-            }, 1200);
+            }, 1100);
         });
       } 
     if (!data) return null;     
-                                                                                                     
+    console.log(data);                                                                                       
     return (
         <>
             <form action="" method="post">
-                <Link to="/">Volver</Link>
                 <label htmlFor="">Nuevo Nombre</label>
                 <input type="text" name="nombre" id="nombre" onChange={handleInputChange} value={data.nombre}/>
                 <label htmlFor="">Nueva Edad</label>
@@ -41,6 +41,7 @@ const UpdateData = () => {
                 <label htmlFor="">Nuevo Correo</label>
                 <input type="email" name="email" id="email" onChange={handleInputChange} value={data.email}/>
                 <button type="submit" onClick={handleSubmit}>Actualizar Usuario</button>
+                <button><Link to="/">Cancelar Editar</Link> </button>
             </form>
         </>
     );
