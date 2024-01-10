@@ -4,17 +4,14 @@ import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 const UpdateData = () => {
     const { id } = useParams();
-    console.log(id);
-
     const [data, setData] = React.useState(null);
 
     React.useEffect(() => {
         getDataById(id).then((response) => {
-            console.log(response);
             setData(response);
         });
     }, [id]);
-    console.log(data);
+    
     const handleInputChange = (event) => {
         setData({
           ...data,
@@ -24,7 +21,6 @@ const UpdateData = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(data)
         updateData(id, data).then(() => {
             Swal.fire("Usuario Actualizado!", "Tu usuario ha sido actualizado.", "success");
             setTimeout(() => {
@@ -33,7 +29,7 @@ const UpdateData = () => {
         });
       } 
     if (!data) return null;     
-    console.log(data.nombre);                                                                                                     
+                                                                                                     
     return (
         <>
             <form action="" method="post">
