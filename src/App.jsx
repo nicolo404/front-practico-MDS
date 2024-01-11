@@ -68,6 +68,7 @@ const App = ()=>{
           ))}
         </tbody>
       </table>
+      <button><Link to="tbl_usuario">Ir a tbl_usuario</Link></button>
     </div>
   );
 }
