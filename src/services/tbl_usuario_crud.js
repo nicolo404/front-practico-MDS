@@ -7,4 +7,14 @@ const get_tbl_usuario = async () => {
     return data;
 }
 
-export { get_tbl_usuario};
+const delete_tbl_usuario = async (id) => {
+    const { data } = await axios.delete(`${baseURL}delete-tbl_usuario/${id}`);
+    return data;
+}
+
+const create_tbl_usuario = async (tbl_usuario) => {
+    const { tbl_usuario: response } = await axios.post(`${baseURL}crear-tbl_usuario`, tbl_usuario);
+    return response;
+}   
+
+export { get_tbl_usuario, delete_tbl_usuario, create_tbl_usuario};

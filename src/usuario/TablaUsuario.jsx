@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {get_tbl_usuario} from "../services/tbl_usuario_crud";
+import {get_tbl_usuario, delete_tbl_usuario} from "../services/tbl_usuario_crud";
+import Swal from "sweetalert2";
+
 const Usuario = () => {
     const [data, setData] = useState(null);
     
@@ -11,6 +13,27 @@ const Usuario = () => {
     }, []);
     
     if (!data) return null;
+
+    const BorrarUsuario = (id) => {
+        Swal.fire({
+            title: "¿Estas seguro?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Si, borrar!",
+            cancelButtonText: "No, cancelar!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                delete_tbl_usuario(id).then(() => {
+                    Swal.fire("Borrado!", "Tu usuario ha sido borrado.", "success");
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1200);
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire("Cancelado", "Tu usuario esta a salvo :)", "error");
+            }
+        });
+    }
     
     return (
         <div>
