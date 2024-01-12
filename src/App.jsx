@@ -69,6 +69,7 @@ const App = ()=>{
         </tbody>
       </table>
       <button><Link to="tbl_usuario">Ir a tbl_usuario</Link></button>
+      <button><Link to="tbl_tipoentrada">Ir a tbl_tipoentrada</Link></button>
     </div>
   );
 }
