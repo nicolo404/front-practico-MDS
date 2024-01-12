@@ -14,7 +14,6 @@ const App = ()=>{
     });
   }, []);
   
-
   if (!data) return null;
 
   const BorrarUsuario = (id) => {
@@ -70,6 +69,7 @@ const App = ()=>{
       </table>
       <button><Link to="tbl_usuario">Ir a tbl_usuario</Link></button>
       <button><Link to="tbl_tipoentrada">Ir a tbl_tipoentrada</Link></button>
+      <button><Link to="tbl_categoriaentrada">Ir a tbl_categoriaentrada</Link></button>
     </div>
   );
 }
