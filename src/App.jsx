@@ -70,6 +70,7 @@ const App = ()=>{
       <button><Link to="tbl_usuario">Ir a tbl_usuario</Link></button>
       <button><Link to="tbl_tipoentrada">Ir a tbl_tipoentrada</Link></button>
       <button><Link to="tbl_categoriaentrada">Ir a tbl_categoriaentrada</Link></button>
+      <button><Link to="tbl_supervisor">Ir a tbl_supervisor</Link></button>
     </div>
   );
 }
