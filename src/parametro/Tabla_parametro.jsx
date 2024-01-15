@@ -17,8 +17,9 @@ const Tabla_parametro = () => {
         <div className="main">
         <Main></Main>
         <div className="contenido">
-        <h1>Tabla tbl_parametro</h1>
-        <table id="tabla-parametro">
+        <h1 id="titulo-tipo-entrada">Tabla tbl_parametro</h1>
+        <div id="tabla-tipo-entrada">
+        <table>
             <thead>
             <tr>
                 <th>I_IDPARAMETRO</th>
@@ -37,6 +38,7 @@ const Tabla_parametro = () => {
             }
             </tbody>
         </table>
+        </div>
         </div>
         </div>
     );    
