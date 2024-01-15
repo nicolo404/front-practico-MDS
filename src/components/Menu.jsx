@@ -21,6 +21,8 @@ const Menu = () => {
                         <hr />
                         <li><Link to="tbl_avisomail">Aviso Mail</Link></li>
                         <hr />
+                        <li><Link to="tbl_parametro">Parametro</Link></li>
+                        <hr />
                     </ul>
                 </div>
             </div>
