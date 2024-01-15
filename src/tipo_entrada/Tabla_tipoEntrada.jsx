@@ -16,8 +16,9 @@ const Tabla_tipoEntrada = () => {
     return (
         <div className="main">
         <Main></Main>
+        <div className="contenido">
+        <h2 id="titulo-tipo-entrada">Tabla Tipo_Entrada</h2>
         <div id="tabla-tipo-entrada">
-        <h1>Tabla tbl_tipoentrada</h1>
         <hr />
         <table>
             <thead>
@@ -35,6 +36,7 @@ const Tabla_tipoEntrada = () => {
             ))}
             </tbody>
         </table>
+        </div>
         </div>
         </div>
     );

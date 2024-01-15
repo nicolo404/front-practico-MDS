@@ -1,5 +1,7 @@
 import React from "react";
 import { get_tbl_supervisor } from "../services/tbl_supervisor";
+import "../App.css"
+import Menu from "../components/Menu";
 
 const Tabla_supervisor = () => {
     const [data, setData] = React.useState(null);
@@ -13,9 +15,11 @@ const Tabla_supervisor = () => {
     if (!data) return null;
     
     return (
-        <div>
+        <div className="main">
+        <Menu></Menu>
+        <div className="contenido">
         <h1>Tabla tbl_supervisor</h1>
-        <table>
+        <table id="tabla-supervisor">
             <thead>
             <tr>
                 <th>i_idsupervisor</th>
@@ -39,6 +43,7 @@ const Tabla_supervisor = () => {
             ))}
             </tbody>
         </table>
+        </div>
         </div>
     );    
 }

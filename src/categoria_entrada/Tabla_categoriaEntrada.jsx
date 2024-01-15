@@ -1,6 +1,7 @@
 import React from "react";
 import { get_tbl_categoriaentrada } from "../services/tbl_categoriaentrada";
-
+import Menu from "../components/Menu";
+import "../App.css"
 const Tabla_categoriaEntrada = () => {
     const [data, setData] = React.useState(null);
     
@@ -13,9 +14,11 @@ const Tabla_categoriaEntrada = () => {
     if (!data) return null;
     
     return (
-        <div>
+        <div className="main">
+        <Menu></Menu>
+        <div className="contenido">
         <h1>Tabla tbl_categoriaentrada</h1>
-        <table>
+        <table id="tabla-cat-entrada">
             <thead>
             <tr>
                 <th>I_IDTIPOENTRADA</th>
@@ -51,6 +54,7 @@ const Tabla_categoriaEntrada = () => {
             ))}
             </tbody>
         </table>
+        </div>
         </div>
     );
 }
