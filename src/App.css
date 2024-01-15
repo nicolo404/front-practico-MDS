@@ -108,6 +108,14 @@
     overflow-y: auto;
     height: 0%;
   }
+  #tabla-avisomail{
+    width: 45%;
+    margin: 20px auto;
+    color: #333;
+    overflow-y: auto;
+    height: 0%;
+  }
+  
   button {
     margin-top: 20px;
     background-color: #007bff;

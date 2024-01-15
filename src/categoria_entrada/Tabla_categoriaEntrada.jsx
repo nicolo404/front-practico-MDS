@@ -21,8 +21,8 @@ const Tabla_categoriaEntrada = () => {
         <table id="tabla-cat-entrada">
             <thead>
             <tr>
-                <th>I_IDTIPOENTRADA</th>
                 <th>I_IDCATENTRADA</th>
+                <th>I_IDTIPOENTRADA</th>
                 <th>S_NBCATENTRADA</th>
                 <th>D_FECHAHRAINI</th>
                 <th>D_FECHAHRAFIN</th>

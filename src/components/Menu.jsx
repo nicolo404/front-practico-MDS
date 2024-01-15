@@ -19,6 +19,8 @@ const Menu = () => {
                         <hr />
                         <li><Link to="tbl_supervisor">Supervisor</Link></li>
                         <hr />
+                        <li><Link to="tbl_avisomail">Aviso Mail</Link></li>
+                        <hr />
                     </ul>
                 </div>
             </div>
