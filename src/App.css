@@ -1,55 +1,113 @@
-body{
+body, h1, h2, h3, p, ul, li, table {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
-}
-div{
+  }
+  #titulo-page1{
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    margin-left: 10vw;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  #root {
+    display: flex;
+    flex-direction:row;
+    min-height: 100vh;
+    min-width: 100vw;
+  }
+  #Aplicacion {
+    width: 100vw;
+  }
+  
+  .main {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  .contenedor {
+    width: 10%;
+    background-color: #f0f0f0;
+    padding: 20px;
 
-}
-table{
-    border-collapse:collapse;
-    border: solid 1px #000;
-    width: 100%;
-    color: #588c7e;
-    font-family: monospace;
-    font-size: 25px;
-    text-align: left;
-}
-th{
-    background-color: #588c7e;
-    color: white;
+  }
+  
+  #menu h2 {
+    color: #333;
+  }
+  
+  #menu ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  #menu li {
+    margin-bottom: 10px;
+  }
+  
+  #menu a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  #menu a:hover {
+    color: #0056b3;
+  }
+  
+  .contenido {
+    flex: 1;
+    padding: 20px;
+    width: 50vw;
+  }
+  
+  #tabla {
+    width: 60vw;
+    margin: 20px auto;
+  }
+  #tabla-tipo-entrada{
+    width: 30vw;
+    margin: 20px auto;
+  }
+  
+  button {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: #fff;
     padding: 10px;
-    border: solid 1px #000;
-}
-
-tbody tr:hover{
-    background-color: #ddd;
-    cursor: pointer;
-}
-td{
-    border: solid 1px #000;
-    padding: 10px;
-}
-button{
-    background-color: #588c7e;
-    color: white;
-    padding: 10px;
-    margin: 5px;
-    border-radius: 5px;
     border: none;
     cursor: pointer;
-    font-size: 20px;
-}
-button:hover{
-    background-color: #fff;
-    color: #588c7e;
-    border: solid 1px #588c7e;
-}
+  }
+  
+  button a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  
+
 
 
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { get_tbl_tipoentrada } from "../services/tbl_tipoentrada";
-
+import Main from "../components/Menu";
+import "../App.css"
 const Tabla_tipoEntrada = () => {
     const [data, setData] = React.useState(null);
     
@@ -13,14 +14,16 @@ const Tabla_tipoEntrada = () => {
     if (!data) return null;
     
     return (
-        <div>
+        <div className="main">
+        <Main></Main>
+        <div id="tabla-tipo-entrada">
         <h1>Tabla tbl_tipoentrada</h1>
+        <hr />
         <table>
             <thead>
             <tr>
                 <th>I_IDTIPOENTRADA</th>
                 <th>S_NBTIPOENTRADA</th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -32,6 +35,7 @@ const Tabla_tipoEntrada = () => {
             ))}
             </tbody>
         </table>
+        </div>
         </div>
     );
 }

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {get_tbl_usuario, delete_tbl_usuario} from "../services/tbl_usuario_crud";
+import Menu from "../components/Menu";
 import Swal from "sweetalert2";
+import "../App.css"
 
 const Usuario = () => {
     const [data, setData] = useState(null);
@@ -36,9 +38,12 @@ const Usuario = () => {
     }
     
     return (
-        <div>
-        <h1>Tabla tbl_usuario</h1>
-        <button ><Link to="crear-usuario">Crear Usuario ➕</Link></button>
+        <div className="main">        
+        <Menu></Menu>
+        <div className="contenido">
+        <div id="tabla">
+            <h2>Tabla de Usuarios</h2>
+            <button  ><Link to="crear-usuario">Crear Usuario ➕</Link></button>
         <br/>
         <table>
             <thead>
@@ -65,6 +70,8 @@ const Usuario = () => {
             ))}
             </tbody>
         </table>
+        </div>
+        </div>
         </div>
     );
 }
