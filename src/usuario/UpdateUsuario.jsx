@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { update_tbl_usuario, get_tbl_usuarioById } from "../services/tbl_usuario_crud";
+import "../App.css"
+import Main from "../components/Menu";
 import Swal from "sweetalert2";
 
 const UpdateUsuario = () => {
@@ -30,35 +32,38 @@ const UpdateUsuario = () => {
       Swal.fire("Usuario Actualizado!", "Tu usuario ha sido actualizado.", "success");
       setTimeout(() => {
         window.location.href = "/tbl_usuario";
-      }, 1100);
+      }, 1050);
     });
   };
   return (
-    <div>
-      <h1>Editar Usuario</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="main">
+    <Main></Main>
+    <div className="contenido-crear-usuario">
+      <h1 className="titulo-crear-update">Editar Usuario</h1>
+      <form onSubmit={handleSubmit} className="form-new-update-user ">
         <label>
           I_IDPERFIL:
-          <input type="text" name="I_IDPERFIL" value={usuario.I_IDPERFIL} onChange={handleChange} />
         </label>
+          <input type="text" name="I_IDPERFIL" value={usuario.I_IDPERFIL} onChange={handleChange} className="input-new-update-user"/>
         <br />
         <label>
           S_IDUSUARIO:
-          <input type="text" name="S_IDUSUARIO" value={usuario.S_IDUSUARIO} onChange={handleChange} />
         </label>
+          <input type="text" name="S_IDUSUARIO" value={usuario.S_IDUSUARIO} onChange={handleChange} className="input-new-update-user"/>
         <br />
         <label>
           S_PASSWD:
-          <input type="text" name="S_PASSWD" value={usuario.S_PASSWD} onChange={handleChange} />
         </label>
+          <input type="text" name="S_PASSWD" value={usuario.S_PASSWD} onChange={handleChange} className="input-new-update-user"/>
         <br />
         <label>
           S_NBUSUARIO:
-          <input type="text" name="S_NBUSUARIO" value={usuario.S_NBUSUARIO} onChange={handleChange} />
         </label>
+          <input type="text" name="S_NBUSUARIO" value={usuario.S_NBUSUARIO} onChange={handleChange} className="input-new-update-user"/>
         <br />
         <button type="submit">Actualizar Usuario</button>
       </form>
+    </div>
     </div>
   );
 };

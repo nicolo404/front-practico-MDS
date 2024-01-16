@@ -18,7 +18,7 @@ const Tabla_parametro = () => {
         <Main></Main>
         <div className="contenido">
         <h1 id="titulo-tipo-entrada">Tabla tbl_parametro</h1>
-        <div id="tabla-tipo-entrada">
+        <div id="tabla-parametro">
         <table>
             <thead>
             <tr>

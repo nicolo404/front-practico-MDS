@@ -1,5 +1,7 @@
 import React from "react";
 import {create_tbl_usuario} from "../services/tbl_usuario_crud";
+import "../App.css"
+import Main from "../components/Menu";
 import Swal from "sweetalert2";
 const CreateUsuario = () => {
     const [usuario, setUsuario] = React.useState({
@@ -20,55 +22,50 @@ const CreateUsuario = () => {
             Swal.fire("Usuario Creado!", "Tu usuario ha sido creado.", "success");
             setTimeout(() => {
                 window.location.href = "/tbl_usuario";
-            }, 1200);
+            }, 1100);
         });
     }
     return (
-        <div>
-            <h1>Crear Usuario</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    I_IDPERFIL:
+        <div className="main">
+        <Main></Main>
+        <div className="contenido-crear-usuario">
+            <h1 class="titulo-crear-update">Crear Usuario</h1>
+            <form onSubmit={handleSubmit} className="form-new-update-user">
                     <input
                         type="text"
                         name="I_IDPERFIL"
-                        value={usuario.I_IDPERFIL}
+                        placeholder="Ingrese el I_IDPERFIL"
                         onChange={handleChange}
+                        className="input-new-update-user"
                     />
-                </label>
                 <br />
-                <label>
-                    S_IDUSUARIO:
                     <input
                         type="text"
                         name="S_IDUSUARIO"
-                        value={usuario.S_IDUSUARIO}
+                        placeholder="Ingrese el S_IDUSUARIO"
                         onChange={handleChange}
+                        className="input-new-update-user"
                     />
-                </label>
                 <br />
-                <label>
-                    S_PASSWD:
                     <input
                         type="text"
                         name="S_PASSWD"
-                        value={usuario.S_PASSWD}
+                        placeholder="Ingrese el S_PASSWD"
                         onChange={handleChange}
+                        className="input-new-update-user"
                     />
-                </label>
                 <br />
-                <label>
-                    S_NBUSUARIO:
                     <input
                         type="text"
                         name="S_NBUSUARIO"
-                        value={usuario.S_NBUSUARIO}
+                        placeholder="Ingrese el S_NBUSUARIO"
                         onChange={handleChange}
+                        className="input-new-update-user"
                     />
-                </label>
                 <br />
                 <button>Crear Usuario</button>
             </form>
+        </div>
         </div>
     );
 }

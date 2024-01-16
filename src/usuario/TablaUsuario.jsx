@@ -29,10 +29,8 @@ const Usuario = () => {
                     Swal.fire("Borrado!", "Tu usuario ha sido borrado.", "success");
                     setTimeout(() => {
                         window.location.reload();
-                    }, 1200);
+                    }, 1050);
                 });
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                Swal.fire("Cancelado", "Tu usuario esta a salvo :)", "error");
             }
         });
     }
