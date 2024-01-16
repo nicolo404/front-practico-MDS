@@ -42,22 +42,22 @@ const UpdateUsuario = () => {
       <h1 className="titulo-crear-update">Editar Usuario</h1>
       <form onSubmit={handleSubmit} className="form-new-update-user ">
         <label>
-          I_IDPERFIL:
+          ID perfil:
         </label>
           <input type="text" name="I_IDPERFIL" value={usuario.I_IDPERFIL} onChange={handleChange} className="input-new-update-user"/>
         <br />
         <label>
-          S_IDUSUARIO:
+          ID usuario:
         </label>
           <input type="text" name="S_IDUSUARIO" value={usuario.S_IDUSUARIO} onChange={handleChange} className="input-new-update-user"/>
         <br />
         <label>
-          S_PASSWD:
+          Password:
         </label>
           <input type="text" name="S_PASSWD" value={usuario.S_PASSWD} onChange={handleChange} className="input-new-update-user"/>
         <br />
         <label>
-          S_NBUSUARIO:
+          Nombre de Usuario:
         </label>
           <input type="text" name="S_NBUSUARIO" value={usuario.S_NBUSUARIO} onChange={handleChange} className="input-new-update-user"/>
         <br />

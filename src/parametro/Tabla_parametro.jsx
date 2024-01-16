@@ -22,9 +22,9 @@ const Tabla_parametro = () => {
         <table>
             <thead>
             <tr>
-                <th>I_IDPARAMETRO</th>
-                <th>S_NBPARAMETRO</th>
-                <th>S_VALORPARAMETRO</th>
+                <th>ID Parametro</th>
+                <th>Nombre Parametro</th>
+                <th>Valor Parametro</th>
             </tr>
             </thead>
             <tbody>

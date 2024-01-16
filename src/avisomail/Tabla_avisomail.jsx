@@ -18,16 +18,16 @@ const Tabla_avisomail = () => {
         <div className="main">
         <Menu></Menu>
         <div className="contenido">
-        <h1>Tabla tbl_avisomail</h1>
+        <h1 id="titulo-avisomail">Tabla Aviso Email</h1>
         <table id="tabla-avisomail">
             <thead>
             <tr>
-                <th>i_idpatron</th>
-                <th>s_nombre</th>
-                <th>"s_rut</th>
+                <th>ID Patron</th>
+                <th>Nombre</th>
+                <th>Rut</th>
                 <th>s_grMail</th>
-                <th>i_activo</th>
-                <th>i_prohibe</th>
+                <th>Activo</th>
+                <th>Prohibe</th>
             </tr>
             </thead>
             <tbody>

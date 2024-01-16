@@ -37,7 +37,7 @@ const Usuario = () => {
     
     return (
         <div className="main">        
-        <Menu></Menu>
+        <Menu rutaActual ="/tbl_usuario"></Menu>
         <div className="contenido">
         <div id="tabla">
             <h2>Tabla de Usuarios</h2>
@@ -46,10 +46,10 @@ const Usuario = () => {
         <table>
             <thead>
             <tr>
-                <th>I_IDPERFIL</th>
-                <th>S_IDUSUARIO</th>
-                <th>S_PASSWD</th>
-                <th>S_NBUSUARIO</th>
+                <th>ID PERFIL</th>
+                <th>ID USUARIO</th>
+                <th>PASS</th>
+                <th>USUARIO</th>
                 <th></th> 
             </tr>
             </thead>

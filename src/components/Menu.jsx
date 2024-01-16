@@ -11,17 +11,17 @@ const Menu = () => {
                         <hr />
                         <li><Link to="/">Inicio</Link></li>
                         <hr />
-                        <li><Link to="tbl_usuario">Usuarios</Link></li>
+                        <li><a href="tbl_usuario">Usuarios</a></li>
                         <hr />
-                        <li><Link to="tbl_tipoentrada">Tipo de Entrada</Link></li>
+                        <li><a href="/tbl_tipoentrada">Tipo de Entrada</a></li>
                         <hr />
-                        <li><Link to="tbl_categoriaentrada">Categoria de Entrada</Link></li>
+                        <li><a href="/tbl_categoriaentrada">Categoria de Entrada</a></li>
                         <hr />
-                        <li><Link to="tbl_supervisor">Supervisor</Link></li>
+                        <li><a href="/tbl_supervisor">Supervisor</a></li>
                         <hr />
-                        <li><Link to="tbl_avisomail">Aviso Mail</Link></li>
+                        <li><a href="/tbl_avisomail">Aviso Mail</a></li>
                         <hr />
-                        <li><Link to="tbl_parametro">Parametro</Link></li>
+                        <li><a href="/tbl_parametro">Parametro</a></li>
                         <hr />
                     </ul>
                 </div>

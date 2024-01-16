@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { get_tbl_tipoentrada } from "../services/tbl_tipoentrada";
 import Main from "../components/Menu";
-import "../App.css"
+import "../App.css";
 const Tabla_tipoEntrada = () => {
     const [data, setData] = React.useState(null);
     
@@ -17,14 +18,15 @@ const Tabla_tipoEntrada = () => {
         <div className="main">
         <Main></Main>
         <div className="contenido">
-        <h2 id="titulo-tipo-entrada">Tabla Tipo_Entrada</h2>
+        <h2 id="titulo-tipo-entrada">Tabla Tipo Entrada</h2>
         <div id="tabla-tipo-entrada">
         <hr />
         <table>
             <thead>
             <tr>
-                <th>I_IDTIPOENTRADA</th>
-                <th>S_NBTIPOENTRADA</th>
+                <th>ID Tipo Entrada</th>
+                <th>Nombre Tipo Entrada</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -32,6 +34,9 @@ const Tabla_tipoEntrada = () => {
                 <tr key={tipoentrada.I_IDTIPOENTRADA}>
                 <td>{tipoentrada.I_IDTIPOENTRADA}</td>
                 <td>{tipoentrada.S_NBTIPOENTRADA}</td>
+                <td>
+                    <button><Link to={`editar-usuario/${tipoentrada.I_IDTIPOENTRADA}`}>Editar</Link></button>
+                </td>
                 </tr>
             ))}
             </tbody>

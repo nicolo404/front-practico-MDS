@@ -1,7 +1,10 @@
 import React from "react";
-import { get_tbl_supervisor } from "../services/tbl_supervisor";
+import { get_tbl_supervisor, get_tbl_supervisorById, put_tbl_supervisor} from "../services/tbl_supervisor";
 import "../App.css"
+import { Link } from "react-router-dom";
 import Menu from "../components/Menu";
+
+
 
 const Tabla_supervisor = () => {
     const [data, setData] = React.useState(null);
@@ -12,22 +15,34 @@ const Tabla_supervisor = () => {
         });
     }, []);
     
+    const CambiarEstado = (id) => {
+        get_tbl_supervisorById(id).then((response) => {
+            const nuevoEstado = response[0].i_activo === 1 ? 0 : 1;
+            put_tbl_supervisor(id, {i_activo: nuevoEstado}).then(() => {
+                window.location.reload();
+            });
+        });
+    }
+
     if (!data) return null;
-    
+
     return (
         <div className="main">
         <Menu></Menu>
         <div className="contenido">
-        <h1>Tabla tbl_supervisor</h1>
-        <table id="tabla-supervisor">
+        <div  id="tabla-supervisor">
+        <h1>Tabla Supervisor</h1>
+        <button><Link to={`crear-supervisor`}>Agregar ➕</Link></button>
+        <table>
             <thead>
             <tr>
-                <th>i_idsupervisor</th>
-                <th>s_rutsupervisor</th>
-                <th>s_nombresupervisor</th>
-                <th>i_pinsupervisor</th>
-                <th>i_activo</th>
-                <th>i_admin</th>
+                <th>ID Supervisor</th>
+                <th>Rut Supervisor</th>
+                <th>Nombre Supervisor</th>
+                <th>Pin Supervisor</th>
+                <th>Activo</th>
+                <th>Admin</th>
+                <th> </th>
             </tr>
             </thead>
             <tbody>
@@ -39,10 +54,15 @@ const Tabla_supervisor = () => {
                 <td>{supervisor.i_pinsupervisor}</td>
                 <td>{supervisor.i_activo}</td>
                 <td>{supervisor.i_admin}</td>
+                <td>
+                    <button><Link to={`editar-usuario/${supervisor.i_idsupervisor}`}>Editar</Link></button>
+                    <button onClick={() => CambiarEstado(supervisor.i_idsupervisor)}>Cambiar Estado</button>
+                </td>
                 </tr>
             ))}
             </tbody>
         </table>
+        </div>
         </div>
         </div>
     );    

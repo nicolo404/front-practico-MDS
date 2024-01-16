@@ -1,5 +1,6 @@
 import React from "react";
 import { get_tbl_categoriaentrada } from "../services/tbl_categoriaentrada";
+import { Link } from "react-router-dom";
 import Menu from "../components/Menu";
 import "../App.css"
 const Tabla_categoriaEntrada = () => {
@@ -16,23 +17,24 @@ const Tabla_categoriaEntrada = () => {
     return (
         <div className="main">
         <Menu></Menu>
-        <div className="contenido">
+        <div id="contenido-cat-entrada">
         <h1>Tabla tbl_categoriaentrada</h1>
         <table id="tabla-cat-entrada">
             <thead>
             <tr>
-                <th>I_IDCATENTRADA</th>
-                <th>I_IDTIPOENTRADA</th>
-                <th>S_NBCATENTRADA</th>
-                <th>D_FECHAHRAINI</th>
-                <th>D_FECHAHRAFIN</th>
+                <th>ID Categoria</th>
+                <th>ID Tipo entrada</th>
+                <th>Nombre Categoria</th>
+                <th>Fecha y Hora Inicio</th>
+                <th>Fecha y Hora Inicio</th>
                 <th>I_CANTENTRADADEF</th>
-                <th>I_EDAD</th>
-                <th>S_SEXO</th>
-                <th>S_RANGO</th>
-                <th>S_USARLISTA</th>
-                <th>I_VALOR</th>
-                <th>S_IMAGEN</th>
+                <th>EDAD</th>
+                <th>SEXO</th>
+                <th>RANGO</th>
+                <th>USAR LISTA</th>
+                <th>VALOR</th>
+                <th>IMAGEN</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -50,6 +52,10 @@ const Tabla_categoriaEntrada = () => {
                 <td>{categoriaentrada.S_USARLISTA}</td>
                 <td>{categoriaentrada.I_VALOR}</td>
                 <td>{categoriaentrada.S_IMAGEN}</td>
+                <td>
+                    <button><Link to={`editar-usuario/${categoriaentrada.I_IDCATENTRADA}`}>Editar</Link></button>
+                    <button onClick={() => BorrarUsuario(categoriaentrada.I_IDCATENTRADA)}>Borrar</button>
+                </td>
                 </tr>
             ))}
             </tbody>

@@ -34,7 +34,7 @@ const CreateUsuario = () => {
                     <input
                         type="text"
                         name="I_IDPERFIL"
-                        placeholder="Ingrese el I_IDPERFIL"
+                        placeholder="Ingrese el id perfil"
                         onChange={handleChange}
                         className="input-new-update-user"
                     />
@@ -42,7 +42,7 @@ const CreateUsuario = () => {
                     <input
                         type="text"
                         name="S_IDUSUARIO"
-                        placeholder="Ingrese el S_IDUSUARIO"
+                        placeholder="Ingrese el id usuario"
                         onChange={handleChange}
                         className="input-new-update-user"
                     />
@@ -50,7 +50,7 @@ const CreateUsuario = () => {
                     <input
                         type="text"
                         name="S_PASSWD"
-                        placeholder="Ingrese el S_PASSWD"
+                        placeholder="Ingrese el password"
                         onChange={handleChange}
                         className="input-new-update-user"
                     />
@@ -58,12 +58,12 @@ const CreateUsuario = () => {
                     <input
                         type="text"
                         name="S_NBUSUARIO"
-                        placeholder="Ingrese el S_NBUSUARIO"
+                        placeholder="Ingrese el nombre de usuario"
                         onChange={handleChange}
                         className="input-new-update-user"
                     />
                 <br />
-                <button>Crear Usuario</button>
+                <button type="submit" className="button-enviar-datos" onClick={handleSubmit}>Enviar Datos</button>
             </form>
         </div>
         </div>
