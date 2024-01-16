@@ -6,6 +6,7 @@ import CreateUsuario from "./usuario/CreateUsuario"
 import Tabla_tipoEntrada from "./tipo_entrada/Tabla_tipoEntrada"
 import Tabla_categoriaEntrada from "./categoria_entrada/Tabla_categoriaEntrada"
 import Tabla_supervisor from "./supervisor/Tabla_supervisor"
+import Crear_supervisor from "./supervisor/Crear_supervisor"
 import Tabla_avisomail from "./avisomail/Tabla_avisomail"
 import Tabla_parametro from "./parametro/Tabla_parametro" 
 
@@ -20,6 +21,7 @@ function Aplicacion() {
         <Route path="tbl_tipoentrada" element={ <Tabla_tipoEntrada/> } />
         <Route path="tbl_categoriaentrada" element={ <Tabla_categoriaEntrada/> } />
         <Route path="tbl_supervisor" element={ <Tabla_supervisor/> } />
+        <Route path="tbl_supervisor/crear-supervisor" element={ <Crear_supervisor/> } />
         <Route path="tbl_avisomail" element={ <Tabla_avisomail/> } />
         <Route path="tbl_parametro" element={ <Tabla_parametro/> } />
       </Routes>

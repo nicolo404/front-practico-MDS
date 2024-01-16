@@ -1,9 +1,9 @@
 import React from "react";
-import { get_tbl_supervisor, get_tbl_supervisorById, put_tbl_supervisor} from "../services/tbl_supervisor";
+import { get_tbl_supervisor, get_tbl_supervisorById, put_tbl_supervisor, delete_tbl_supervisor} from "../services/tbl_supervisor";
 import "../App.css"
 import { Link } from "react-router-dom";
 import Menu from "../components/Menu";
-
+import Swal from "sweetalert2";
 
 
 const Tabla_supervisor = () => {
@@ -24,12 +24,34 @@ const Tabla_supervisor = () => {
         });
     }
 
+    const Eliminar = (id) => {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#c44',
+            confirmButtonText: 'Sí, eliminar'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                delete_tbl_supervisor(id).then(() => {
+                    Swal.fire(
+                    '¡Eliminado!'
+                    )
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1100);
+                });
+            }
+        })
+    }
+
     if (!data) return null;
 
     return (
         <div className="main">
         <Menu></Menu>
-        <div className="contenido">
+        <div  className="contenido">
         <div  id="tabla-supervisor">
         <h1>Tabla Supervisor</h1>
         <button><Link to={`crear-supervisor`}>Agregar ➕</Link></button>
@@ -57,6 +79,7 @@ const Tabla_supervisor = () => {
                 <td>
                     <button><Link to={`editar-usuario/${supervisor.i_idsupervisor}`}>Editar</Link></button>
                     <button onClick={() => CambiarEstado(supervisor.i_idsupervisor)}>Cambiar Estado</button>
+                    <button onClick={() => Eliminar(supervisor.i_idsupervisor)}>Borrar</button>
                 </td>
                 </tr>
             ))}

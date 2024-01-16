@@ -13,6 +13,7 @@ const get_tbl_supervisorById = async (id) => {
     return data;
 }
 const post_tbl_supervisor = async (obj) => {
+    console.log(obj);
     const { data } = await axios.post(baseURL+"crear-tbl_supervisor/", obj);
     console.log(data);
     return data;
