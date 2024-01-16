@@ -77,7 +77,7 @@ const Tabla_supervisor = () => {
                 <td>{supervisor.i_activo}</td>
                 <td>{supervisor.i_admin}</td>
                 <td>
-                    <button><Link to={`editar-usuario/${supervisor.i_idsupervisor}`}>Editar</Link></button>
+                    <button><Link to={`editar-supervisor/${supervisor.i_idsupervisor}`}>Editar</Link></button>
                     <button onClick={() => CambiarEstado(supervisor.i_idsupervisor)}>Cambiar Estado</button>
                     <button onClick={() => Eliminar(supervisor.i_idsupervisor)}>Borrar</button>
                 </td>
