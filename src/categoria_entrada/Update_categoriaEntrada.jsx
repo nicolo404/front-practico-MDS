@@ -38,6 +38,16 @@ const Update_categoriaEntrada = () => {
             [e.target.name]: e.target.value,
         });
     };
+    const formatearFecha = (fecha) => {
+        const fechaDate = new Date(fecha);
+        const anio = fechaDate.getFullYear();
+        const mes = fechaDate.getMonth() + 1;
+        const dia = fechaDate.getDate();
+        const hora = fechaDate.getHours();
+        const minutos = fechaDate.getMinutes();
+        const segundos = fechaDate.getSeconds();
+        return `${dia}/${mes}/${anio} ${hora}:${minutos}:${segundos}`;
+    };
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("put_tbl_categoriaentrada");
@@ -73,12 +83,12 @@ const Update_categoriaEntrada = () => {
         <label>
         Fecha y Hora Inicio:
         </label>
-        <input type="datetime" name="D_FECHAHRAINI" value={categoria.D_FECHAHRAINI} onChange={handleChange} className="input-new-update-cat"/>
+        <input type="datetime" name="D_FECHAHRAINI" value={formatearFecha(categoria.D_FECHAHRAINI)} onChange={handleChange} className="input-new-update-cat"/>
         <br />
         <label>
         Fecha y Hora Fin:
         </label>
-        <input type="datetime" name="D_FECHAHRAFIN" value={categoria.D_FECHAHRAFIN} onChange={handleChange} className="input-new-update-cat"/>
+        <input type="datetime" name="D_FECHAHRAFIN" value={formatearFecha(categoria.D_FECHAHRAFIN)} onChange={handleChange} className="input-new-update-cat"/>
         <br />
         <label>
         Cantidad Entrada Defecto:
