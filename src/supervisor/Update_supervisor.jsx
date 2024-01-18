@@ -50,12 +50,18 @@ const Update_supervisor = () => {
                     <label>
                         Activo:
                     </label>
-                    <input type="text" name="i_activo" value={supervisor.i_activo} onChange={handleChange} className="input-new-update-user" />
+                    <select name="i_activo" value={supervisor.i_activo} onChange={handleChange} className="input-new-update-user">
+                        <option value={0}>Desactivar</option>
+                        <option value={1}>Activar</option>
+                    </select>
                     <br />
                     <label>
                         Admin:
                     </label>
-                    <input type="text" name="i_admin" value={supervisor.i_admin} onChange={handleChange} className="input-new-update-user" />
+                    <select name="i_admin" value={supervisor.i_admin} onChange={handleChange} className="input-new-update-user">
+                        <option value={0}>Desactivar</option>
+                        <option value={1}>Activar</option>
+                    </select>
                     <br />
                     <label>
                         ID Supervisor:
@@ -77,7 +83,7 @@ const Update_supervisor = () => {
                     </label>
                     <input type="text" name="s_rutsupervisor" value={supervisor.s_rutsupervisor} onChange={handleChange} className="input-new-update-user" />
                     <br />
-                    <input type="submit" value="Actualizar" className="input-submit-user" />
+                    <button type="submit">Actualizar Supervisor</button>
                 </form>
             </div>
         </div>

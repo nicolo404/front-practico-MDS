@@ -14,14 +14,20 @@ const Tabla_supervisor = () => {
         setData(response);
         });
     }, []);
-    
-    const CambiarEstado = (id) => {
-        get_tbl_supervisorById(id).then((response) => {
-            const nuevoEstado = response[0].i_activo === 1 ? 0 : 1;
-            put_tbl_supervisor(id, {i_activo: nuevoEstado}).then(() => {
-                window.location.reload();
-            });
-        });
+
+    const estadoActivo = (e) => {
+        if (e === 1) {
+            return "Si";
+        } else {
+            return "No";
+        }
+    }
+    const estadoAdmin = (e) => {
+        if (e === 1) {
+            return "Si";
+        } else {
+            return "No";
+        }
     }
 
     const Eliminar = (id) => {
@@ -74,11 +80,10 @@ const Tabla_supervisor = () => {
                 <td>{supervisor.s_rutsupervisor}</td>
                 <td>{supervisor.s_nombresupervisor}</td>
                 <td>{supervisor.i_pinsupervisor}</td>
-                <td>{supervisor.i_activo}</td>
-                <td>{supervisor.i_admin}</td>
+                <td>{estadoActivo(supervisor.i_activo)}</td>
+                <td>{estadoAdmin(supervisor.i_admin)}</td>
                 <td>
                     <button><Link to={`editar-supervisor/${supervisor.i_idsupervisor}`}>Editar</Link></button>
-                    <button onClick={() => CambiarEstado(supervisor.i_idsupervisor)}>Cambiar Estado</button>
                     <button onClick={() => Eliminar(supervisor.i_idsupervisor)}>Borrar</button>
                 </td>
                 </tr>
