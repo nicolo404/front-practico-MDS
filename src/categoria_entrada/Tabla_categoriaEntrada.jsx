@@ -12,6 +12,17 @@ const Tabla_categoriaEntrada = () => {
         });
     }, []);
     
+    const formatearFecha = (fecha) => {
+        const fechaDate = new Date(fecha);
+        const anio = fechaDate.getFullYear();
+        const mes = fechaDate.getMonth() + 1;
+        const dia = fechaDate.getDate();
+        const hora = fechaDate.getHours();
+        const minutos = fechaDate.getMinutes();
+        const segundos = fechaDate.getSeconds();
+        return `${dia}/${mes}/${anio} ${hora}:${minutos}:${segundos}`;
+    };
+
     if (!data) return null;
     
     return (
@@ -41,8 +52,8 @@ const Tabla_categoriaEntrada = () => {
                 <tr key={categoriaentrada.I_IDCATENTRADA}>
                 
                 <td>{categoriaentrada.S_NBCATENTRADA}</td>
-                <td>{categoriaentrada.D_FECHAHRAINI}</td>
-                <td>{categoriaentrada.D_FECHAHRAFIN}</td>
+                <td>{formatearFecha(categoriaentrada.D_FECHAHRAFIN)}</td>
+                <td>{formatearFecha(categoriaentrada.D_FECHAHRAFIN)}</td>
                 <td>{categoriaentrada.I_CANTENTRADADEF}</td>
                 <td>{categoriaentrada.I_EDAD}</td>
                 <td>{categoriaentrada.S_SEXO}</td>
