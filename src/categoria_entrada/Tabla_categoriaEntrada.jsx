@@ -18,7 +18,7 @@ const Tabla_categoriaEntrada = () => {
         <div className="main">
         <Menu></Menu>
         <div id="contenido-cat-entrada">
-        <h1>Tabla tbl_categoriaentrada</h1>
+        <h1 id="titulo-tipo-entrada">Tabla Categoria Entrada</h1>
         <table id="tabla-cat-entrada">
             <thead>
             <tr>
@@ -53,7 +53,7 @@ const Tabla_categoriaEntrada = () => {
                 <td>{categoriaentrada.I_VALOR}</td>
                 <td>{categoriaentrada.S_IMAGEN}</td>
                 <td>
-                    <button><Link to={`editar-usuario/${categoriaentrada.I_IDCATENTRADA}`}>Editar</Link></button>
+                    <button><Link to={`editar-categoriaentrada/${categoriaentrada.I_IDCATENTRADA}`}>Editar</Link></button>
                     <button onClick={() => BorrarUsuario(categoriaentrada.I_IDCATENTRADA)}>Borrar</button>
                 </td>
                 </tr>

@@ -9,8 +9,9 @@ const get_tbl_supervisor = async () => {
 }
 const get_tbl_supervisorById = async (id) => {
     const { data } = await axios.get(baseURL+"tbl_supervisor/"+id);
-    console.log(data);
-    return data;
+    console.log("data");
+    console.log(data[0]);
+    return data[0];
 }
 const post_tbl_supervisor = async (obj) => {
     console.log(obj);
@@ -19,6 +20,8 @@ const post_tbl_supervisor = async (obj) => {
     return data;
 }
 const put_tbl_supervisor = async (id, obj) => {
+    console.log("objeto:");
+    console.log(obj)
     const { data } = await axios.put(baseURL+"update-tbl_supervisor/"+id, obj);
     console.log(data);
     return data;

@@ -5,6 +5,7 @@ import UpdateUsuario from "./usuario/UpdateUsuario"
 import CreateUsuario from "./usuario/CreateUsuario"
 import Tabla_tipoEntrada from "./tipo_entrada/Tabla_tipoEntrada"
 import Tabla_categoriaEntrada from "./categoria_entrada/Tabla_categoriaEntrada"
+import Update_categoriaEntrada from "./categoria_entrada/Update_categoriaEntrada"
 import Tabla_supervisor from "./supervisor/Tabla_supervisor"
 import Crear_supervisor from "./supervisor/Crear_supervisor"
 import Update_supervisor from "./supervisor/Update_supervisor"
@@ -21,6 +22,7 @@ function Aplicacion() {
         <Route path='tbl_usuario/crear-usuario' element={ <CreateUsuario /> } />
         <Route path="tbl_tipoentrada" element={ <Tabla_tipoEntrada/> } />
         <Route path="tbl_categoriaentrada" element={ <Tabla_categoriaEntrada/> } />
+        <Route path="tbl_categoriaentrada/editar-categoriaentrada/:id" element={ <Update_categoriaEntrada/> } />
         <Route path="tbl_supervisor" element={ <Tabla_supervisor/> } />
         <Route path="tbl_supervisor/crear-supervisor" element={ <Crear_supervisor/> } />
         <Route path="tbl_supervisor/editar-supervisor/:id" element={ <Update_supervisor/> } />

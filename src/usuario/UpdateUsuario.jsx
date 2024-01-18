@@ -24,8 +24,9 @@ const UpdateUsuario = () => {
       ...usuario,
       [e.target.name]: e.target.value,
     });
+    console.log(usuario);
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     update_tbl_usuario(id, usuario).then(() => {
