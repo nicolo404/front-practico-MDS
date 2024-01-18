@@ -8,15 +8,16 @@ const get_tbl_categoriaentrada = async () => {
 }
 
 const get_tbl_categoriaentradaById = async (id) => {
-    console.log("id: "+id);
     const { data } = await axios.get(baseURL+"only_one-tbl_categoriaentrada/"+id);
-    console.log("data: ");
-    console.log(data);
-    return data;
+    return data[0];
 }
 
 const put_tbl_categoriaentrada = async (id, obj) => {
+    console.log("datos put: ");
+    console.log(id);
+    console.log(obj);
     const { data } = await axios.put(baseURL+"update-tbl_categoriaentrada/"+id, obj);
+    console.log("respuesta:");
     console.log(data);
     return data;
 }

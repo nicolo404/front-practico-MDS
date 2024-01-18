@@ -1,33 +1,35 @@
 import React from "react";
 import "../App.css"
 import { get_tbl_categoriaentradaById, put_tbl_categoriaentrada } from "../services/tbl_categoriaentrada";
+import { get_tbl_tipoentrada } from "../services/tbl_tipoentrada";
 import Main from "../components/Menu";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 const Update_categoriaEntrada = () => {
     const {id} = useParams();
     const [categoria, setCategoria] = React.useState({
-        I_IDCATENTRADA: "",
-        S_NBCATENTRADA: "",
-        I_IDTIPOENTRADA: "",
         D_FECHAHRAFIN: "",
         D_FECHAHRAINI: "",
-        I_EDAD: "",
-        I_CANTENTRADADEF: "",
+        I_CANTENTRADADEF: 0,
+        I_EDAD: 0,
+        I_IDCATENTRADA: 0,
+        I_IDTIPOENTRADA: 0,
+        I_VALOR: 0,
+        S_IMAGEN: null,
+        S_NBCATENTRADA: "",
         S_RANGO: "",
-        S_USARLISTA: "",
-        I_VALOR: "",
-        S_IMAGEN: "",
         S_SEXO: "",
-    });
+        S_USARLISTA: ""
+    }); 
+    const [tipoentrada, setTipoentrada] = React.useState([]);
+    React.useEffect(() => {
+        get_tbl_tipoentrada().then((response) => {
+            setTipoentrada(response);
+        });
+    }, []);
     React.useEffect(() => {
         get_tbl_categoriaentradaById(id).then((response) => {
-            console.log("response: ");
-            console.log(response);
-            console.log("categoria: ");
-            console.log(categoria);
             setCategoria(response);
-            console.log("categoria post: ");
-            console.log(categoria);
         });
     }, [id]);
     const handleChange = (e) => {
@@ -35,16 +37,16 @@ const Update_categoriaEntrada = () => {
             ...categoria,
             [e.target.name]: e.target.value,
         });
-        console.log(categoria);
     };
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log("put_tbl_categoriaentrada");
         console.log(categoria);
-        put_tbl_categoriaentrada(id, categoria).then((r) => {
-            console.log(r);
-            if (r.data.ok === true) {
-                window.location.href = "/categoriaentrada";
-            }
+        put_tbl_categoriaentrada(id, categoria).then(() => {
+            Swal.fire("Categoria Entrada Actualizada!", "Tu categoria entrada ha sido actualizada.", "success");
+            setTimeout(() => {
+                window.location.href = "/tbl_categoriaentrada";
+            }, 1050);
         });
     };
     if (!categoria) return null;
@@ -54,40 +56,39 @@ const Update_categoriaEntrada = () => {
         <div id="contenido-crear-editar-categoria">
         <h1 className="titulo-crear-update">Editar Categoria Entrada</h1>
         <form onSubmit={handleSubmit} className="form-new-update-categoria">
+       
         <label>
-        ID Categoria:
+        Nombre entrada:
         </label>
-        <input type="text" name="I_IDCATENTRADA" value={categoria.I_IDCATENTRADA} onChange={handleChange} className="input-new-update-cat"/>
-        <br />
-        <label>
-        ID Tipo entrada:
-        </label>
-        <input type="text" name="I_IDTIPOENTRADA" value={categoria.I_IDTIPOENTRADA} onChange={handleChange} className="input-new-update-cat"/>
-        <br />
-        <label>
-        Nombre Categoria:
-        </label>
-        <input type="text" name="S_NBCATENTRADA" value={categoria.S_NBCATENTRADA} onChange={handleChange} className="input-new-update-cat"/>
+        <select name="S_NBCATENTRADA" value={categoria.S_NBCATENTRADA} onChange={handleChange} className="input-new-update-cat">
+        <option value="default">--Seleccione--</option>
+        {tipoentrada.map((item) => (
+            console.log(item.S_NBTIPOENTRADA),
+            <option key={item.I_IDTIPOENTRADA} value={item.S_NBTIPOENTRADA}>
+            {item.S_NBTIPOENTRADA}
+            </option>
+        ))}
+        </select>
         <br />
         <label>
         Fecha y Hora Inicio:
         </label>
-        <input type="text" name="D_FECHAHRAINI" value={categoria.D_FECHAHRAINI} onChange={handleChange} className="input-new-update-cat"/>
+        <input type="datetime" name="D_FECHAHRAINI" value={categoria.D_FECHAHRAINI} onChange={handleChange} className="input-new-update-cat"/>
         <br />
         <label>
         Fecha y Hora Fin:
         </label>
-        <input type="text" name="D_FECHAHRAFIN" value={categoria.D_FECHAHRAFIN} onChange={handleChange} className="input-new-update-cat"/>
+        <input type="datetime" name="D_FECHAHRAFIN" value={categoria.D_FECHAHRAFIN} onChange={handleChange} className="input-new-update-cat"/>
         <br />
         <label>
         Cantidad Entrada Defecto:
         </label>
-        <input type="text" name="I_CANTENTRADADEF" value={categoria.I_CANTENTRADADEF} onChange={handleChange} className="input-new-update-cat"/>
+        <input type="number" name="I_CANTENTRADADEF" value={categoria.I_CANTENTRADADEF} onChange={handleChange} className="input-new-update-cat"/>
         <br />
         <label>
         Edad:
         </label>
-        <input type="text" name="I_EDAD" value={categoria.I_EDAD} onChange={handleChange} className="input-new-update-cat"/>
+        <input type="number" name="I_EDAD" value={categoria.I_EDAD} onChange={handleChange} className="input-new-update-cat"/>
         <br />
         <label>
         Sexo:
@@ -112,7 +113,7 @@ const Update_categoriaEntrada = () => {
         <label>
         Imagen:
         </label>
-        <input type="text" name="S_IMAGEN" value={categoria.S_IMAGEN} onChange={handleChange} className="input-new-update-cat"/>
+        <input type="text" name="S_IMAGEN" value={categoria.S_IMAGEN || null || undefined || ""} onChange={handleChange} className="input-new-update-cat"/>
         <br />
         <button type="submit">Actualizar Categoria Entrada</button>
         </form>

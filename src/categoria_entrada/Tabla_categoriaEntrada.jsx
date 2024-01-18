@@ -22,12 +22,11 @@ const Tabla_categoriaEntrada = () => {
         <table id="tabla-cat-entrada">
             <thead>
             <tr>
-                <th>ID Categoria</th>
-                <th>ID Tipo entrada</th>
+                
                 <th>Nombre Categoria</th>
                 <th>Fecha y Hora Inicio</th>
                 <th>Fecha y Hora Inicio</th>
-                <th>I_CANTENTRADADEF</th>
+                <th>Cant Entrada por Defecto</th>
                 <th>EDAD</th>
                 <th>SEXO</th>
                 <th>RANGO</th>
@@ -40,8 +39,7 @@ const Tabla_categoriaEntrada = () => {
             <tbody>
             {data.map((categoriaentrada) => (
                 <tr key={categoriaentrada.I_IDCATENTRADA}>
-                <td>{categoriaentrada.I_IDCATENTRADA}</td>
-                <td>{categoriaentrada.I_IDTIPOENTRADA}</td>
+                
                 <td>{categoriaentrada.S_NBCATENTRADA}</td>
                 <td>{categoriaentrada.D_FECHAHRAINI}</td>
                 <td>{categoriaentrada.D_FECHAHRAFIN}</td>
