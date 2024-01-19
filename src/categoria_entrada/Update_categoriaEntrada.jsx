@@ -5,6 +5,7 @@ import { get_tbl_tipoentrada } from "../services/tbl_tipoentrada";
 import Main from "../components/Menu";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import { set } from "date-fns";
 const Update_categoriaEntrada = () => {
     const {id} = useParams();
     const [categoria, setCategoria] = React.useState({
@@ -22,14 +23,23 @@ const Update_categoriaEntrada = () => {
         S_USARLISTA: ""
     }); 
     const [tipoentrada, setTipoentrada] = React.useState([]);
+    const [fecha, setFecha] = React.useState("");
+    const [hora, setHora] = React.useState("");
+
     React.useEffect(() => {
         get_tbl_tipoentrada().then((response) => {
             setTipoentrada(response);
         });
-    }, []);
+    }, [id]);
     React.useEffect(() => {
         get_tbl_categoriaentradaById(id).then((response) => {
+            //truncarfecha
+            truncarFecha(response.D_FECHAHRAINI);
+            //truncarhora
+            truncarHora(response.D_FECHAHRAINI);
+            //categoria..
             setCategoria(response);
+            
         });
     }, [id]);
     const handleChange = (e) => {
@@ -38,16 +48,37 @@ const Update_categoriaEntrada = () => {
             [e.target.name]: e.target.value,
         });
     };
-    const formatearFecha = (fecha) => {
-        const fechaDate = new Date(fecha);
+    const truncarFecha = (date) => {
+        const fechaDate = new Date(date);
+        console.log("fechaDate: "+fechaDate);
         const anio = fechaDate.getFullYear();
         const mes = fechaDate.getMonth() + 1;
+        console.log("mes: "+mes)
         const dia = fechaDate.getDate();
-        const hora = fechaDate.getHours();
-        const minutos = fechaDate.getMinutes();
-        const segundos = fechaDate.getSeconds();
-        return `${dia}/${mes}/${anio} ${hora}:${minutos}:${segundos}`;
+        if(mes<10 && dia>10){
+            setFecha(""+`${anio}-0${mes}-${dia}`);
+        }
+        if(dia<10 && mes>10){
+            setFecha(""+`${anio}-${mes}-0${dia}`);
+        }
+        if(mes<10 && dia<10){
+            console.log("entro");
+            console.log(""+anio+"-0"+mes+"-0"+dia)
+            setFecha(""+anio+"-0"+mes+"-0"+dia);
+        }
+        const fechaTruncada = ""+anio+"-0"+mes+"-0"+dia;
+        const fechaFormateada = new Date(fechaTruncada).toISOString().split("T")[0]; // formato yyyy-mm-dd
+        setFecha(fechaFormateada);
     };
+
+    const truncarHora = (date) => {
+        console.log("hora: "+date);
+        const horaTruncada = date.split("T")[1].split(".")[0];
+        console.log("hora truncada:"+horaTruncada);
+        setHora(horaTruncada);
+        console.log(hora)
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("put_tbl_categoriaentrada");
@@ -56,7 +87,7 @@ const Update_categoriaEntrada = () => {
             Swal.fire("Categoria Entrada Actualizada!", "Tu categoria entrada ha sido actualizada.", "success");
             setTimeout(() => {
                 window.location.href = "/tbl_categoriaentrada";
-            }, 1050);
+            }, 1500);
         });
     };
     if (!categoria) return null;
@@ -66,29 +97,29 @@ const Update_categoriaEntrada = () => {
         <div id="contenido-crear-editar-categoria">
         <h1 className="titulo-crear-update">Editar Categoria Entrada</h1>
         <form onSubmit={handleSubmit} className="form-new-update-categoria">
-       
         <label>
         Nombre entrada:
         </label>
         <select name="S_NBCATENTRADA" value={categoria.S_NBCATENTRADA} onChange={handleChange} className="input-new-update-cat">
         <option value="default">--Seleccione--</option>
         {tipoentrada.map((item) => (
-            console.log(item.S_NBTIPOENTRADA),
             <option key={item.I_IDTIPOENTRADA} value={item.S_NBTIPOENTRADA}>
             {item.S_NBTIPOENTRADA}
-            </option>
+        </option>
         ))}
         </select>
         <br />
         <label>
         Fecha y Hora Inicio:
         </label>
-        <input type="datetime" name="D_FECHAHRAINI" value={formatearFecha(categoria.D_FECHAHRAINI)} onChange={handleChange} className="input-new-update-cat"/>
-        <br />
+        <input type="date" className="input-fecha" defaultValue={fecha || null || "" || undefined}/>
+        <input type="time" className="input-tiempo" defaultValue={hora || null || "" || undefined}/>
+        <input type="datetime" name="D_FECHAHRAINI" value={categoria.D_FECHAHRAINI} onChange={handleChange} className="input-new-update-cat"/>
+        <br/>
         <label>
         Fecha y Hora Fin:
         </label>
-        <input type="datetime" name="D_FECHAHRAFIN" value={formatearFecha(categoria.D_FECHAHRAFIN)} onChange={handleChange} className="input-new-update-cat"/>
+        <input type="datetime" name="D_FECHAHRAFIN" value={categoria.D_FECHAHRAFIN} onChange={handleChange} className="input-new-update-cat"/>
         <br />
         <label>
         Cantidad Entrada Defecto:

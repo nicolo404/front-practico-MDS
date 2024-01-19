@@ -17,10 +17,8 @@ const Tabla_categoriaEntrada = () => {
         const anio = fechaDate.getFullYear();
         const mes = fechaDate.getMonth() + 1;
         const dia = fechaDate.getDate();
-        const hora = fechaDate.getHours();
-        const minutos = fechaDate.getMinutes();
-        const segundos = fechaDate.getSeconds();
-        return `${dia}/${mes}/${anio} ${hora}:${minutos}:${segundos}`;
+        const horaTruncada = fecha.split("T")[1].split(".")[0];
+        return `${dia}/${mes}/${anio}: ${horaTruncada}`;
     };
 
     if (!data) return null;
@@ -52,7 +50,7 @@ const Tabla_categoriaEntrada = () => {
                 <tr key={categoriaentrada.I_IDCATENTRADA}>
                 
                 <td>{categoriaentrada.S_NBCATENTRADA}</td>
-                <td>{formatearFecha(categoriaentrada.D_FECHAHRAFIN)}</td>
+                <td>{formatearFecha(categoriaentrada.D_FECHAHRAINI)}</td>
                 <td>{formatearFecha(categoriaentrada.D_FECHAHRAFIN)}</td>
                 <td>{categoriaentrada.I_CANTENTRADADEF}</td>
                 <td>{categoriaentrada.I_EDAD}</td>
