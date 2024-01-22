@@ -203,6 +203,26 @@
     align-items: center;
     padding: 10px;
   }
+  .D_FECHAHRAINI{
+    width: 13vw;
+    height: 1vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-top: 5px;
+  }
+  .D_FECHAHRAFIN{
+    width: 13vw;
+    height: 1vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-top: 5px;
+  }
   .input-tiempo{
     width: 5vw;
     height: 1vh;

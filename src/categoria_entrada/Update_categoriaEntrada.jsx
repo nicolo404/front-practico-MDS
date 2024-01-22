@@ -5,7 +5,6 @@ import { get_tbl_tipoentrada } from "../services/tbl_tipoentrada";
 import Main from "../components/Menu";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { set } from "date-fns";
 const Update_categoriaEntrada = () => {
     const {id} = useParams();
     const [categoria, setCategoria] = React.useState({
@@ -55,22 +54,19 @@ const Update_categoriaEntrada = () => {
         const mes = fechaDate.getMonth() + 1;
         console.log("mes: "+mes)
         const dia = fechaDate.getDate();
-        if(mes<10 && dia>10){
-            setFecha(""+`${anio}-0${mes}-${dia}`);
+        if(mes<10 && dia > 9){
+            setFecha(""+anio+"-0"+mes+"-0"+dia);
         }
-        if(dia<10 && mes>10){
-            setFecha(""+`${anio}-${mes}-0${dia}`);
+        if(dia<10 && mes>9){
+            setFecha(""+anio+"-"+mes+"-0"+dia);
         }
         if(mes<10 && dia<10){
-            console.log("entro");
-            console.log(""+anio+"-0"+mes+"-0"+dia)
             setFecha(""+anio+"-0"+mes+"-0"+dia);
         }
         const fechaTruncada = ""+anio+"-0"+mes+"-0"+dia;
         const fechaFormateada = new Date(fechaTruncada).toISOString().split("T")[0]; // formato yyyy-mm-dd
         setFecha(fechaFormateada);
     };
-
     const truncarHora = (date) => {
         console.log("hora: "+date);
         const horaTruncada = date.split("T")[1].split(".")[0];

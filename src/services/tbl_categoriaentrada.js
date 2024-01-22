@@ -22,4 +22,13 @@ const put_tbl_categoriaentrada = async (id, obj) => {
     return data;
 }
 
-export { get_tbl_categoriaentrada, get_tbl_categoriaentradaById, put_tbl_categoriaentrada};
+const post_tbl_categoriaentrada = async (obj) => {
+    const { data } = await axios.post(baseURL+"crear-tbl_categoriaentrada/", obj);
+    return data;
+}
+const delete_tbl_categoriaentrada = async (id) => {
+    const { data } = await axios.delete(baseURL+"delete-tbl_categoriaentrada/"+id);
+    return data;
+}
+
+export { get_tbl_categoriaentrada, get_tbl_categoriaentradaById, put_tbl_categoriaentrada, post_tbl_categoriaentrada, delete_tbl_categoriaentrada};
