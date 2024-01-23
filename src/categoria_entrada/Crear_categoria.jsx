@@ -6,7 +6,6 @@ import Menu from "../components/Menu";
 import "../App.css";
 import { useParams } from "react-router-dom";
 import { set } from "date-fns";
-import { tr } from "date-fns/locale";
 
 const Crear_categoria = () => {
     const id = parseInt(useParams().id, 10);
@@ -36,11 +35,10 @@ const Crear_categoria = () => {
         setCategoria({
             ...categoria,
             [e.target.name]: e.target.value,
-            I_IDTIPOENTRADA: parseInt(e.target.value, 10),
-
         });
     };    
     const truncarDateTime = (date) => {
+        console.log(date);
         const fechaDate = new Date(date);
         const anio = fechaDate.getFullYear();
         const mes = fechaDate.getMonth() + 1;
@@ -56,6 +54,17 @@ const Crear_categoria = () => {
             return(""+anio+"-0"+mes+"-0"+dia+" "+horaTruncada);
         }
     };
+    //validar el I_IDTIPOENTRADA cpm el nombre de la categoria
+    const idTipoEntrada = (nombre) => {
+        let id = 0;
+        tipoentrada.map((item) => {
+            if(item.S_NBTIPOENTRADA === nombre){
+                id = item.I_IDTIPOENTRADA;
+            }
+        });
+        return id;
+    }; 
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const nuevaCategoria = {
@@ -63,7 +72,8 @@ const Crear_categoria = () => {
             I_IDCATENTRADA: id+1,
             D_FECHAHRAINI: truncarDateTime(fecha),
             D_FECHAHRAFIN: truncarDateTime(fecha2),
-        };    
+        };  
+        console.log(nuevaCategoria);
         post_tbl_categoriaentrada(nuevaCategoria).then(() => {
             Swal.fire({
                 icon: "success",
@@ -73,9 +83,10 @@ const Crear_categoria = () => {
             });
             setTimeout(() => {
                 window.location.href = "/tbl_categoriaentrada";
-            }, 1050);    
-        });
-    };
+            }, 1050);
+        }); 
+        }
+
     return (
         <div className="main">
         <Menu rutaActual ="/tbl_categoriaentrada"></Menu>
@@ -96,7 +107,7 @@ const Crear_categoria = () => {
             <input
                 type="datetime-local"
                 name="D_FECHAHRAINI"
-                id="D_FECHAHRAINI"
+                className="D_FECHAHRAINI"
                 onChange={
                     (e) => {
                         setFecha(e.target.value);
@@ -108,7 +119,7 @@ const Crear_categoria = () => {
             <input
                 type="datetime-local"
                 name="D_FECHAHRAFIN"
-                id="D_FECHAHRAFIN"
+                className="D_FECHAHRAFIN"
                 onChange={
                     (e) => {
                         setFecha2(e.target.value);
@@ -179,11 +190,11 @@ const Crear_categoria = () => {
             />
 
             <label htmlFor="">ID tipo de entrada: </label>
-            <select name="I_IDTIPOENTRADA" onChange={handleChange} className="input-new-update-cat">
+            <select required name="I_IDTIPOENTRADA" onChange={handleChange} className="input-new-update-cat">
             <option value="default">--Seleccione--</option>
             {tipoentrada.map((item) => (
                 <option key={item.I_IDTIPOENTRADA} value={item.I_IDTIPOENTRADA}>
-                {item.I_IDTIPOENTRADA}
+                {item.I_IDTIPOENTRADA+" - "+item.S_NBTIPOENTRADA}
             </option>
             ))}
             </select>            
@@ -193,7 +204,6 @@ const Crear_categoria = () => {
         </div>
     );
 }
-
 export default Crear_categoria;
 
 

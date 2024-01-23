@@ -21,8 +21,7 @@ const Tabla_categoriaEntrada = () => {
         const dia = fechaDate.getDate();
         const horaTruncada = fecha.split("T")[1].split(".")[0];
         return `${dia}/${mes}/${anio}: ${horaTruncada}`;
-    };
-    
+    };    
     const BorrarCategoria = (id) => {
         Swal.fire({
             title: "¿Estas seguro?",
@@ -53,7 +52,7 @@ const Tabla_categoriaEntrada = () => {
         <button  ><Link to={`crear-categoria/${lastId}`}>Agregar Categoria ➕</Link></button>
         <table id="tabla-cat-entrada">
             <thead>
-            <tr>    
+            <tr>   
                 <th>Nombre Categoria</th>
                 <th>Fecha y Hora Inicio</th>
                 <th>Fecha y Hora Inicio</th>
@@ -69,7 +68,7 @@ const Tabla_categoriaEntrada = () => {
             </thead>
             <tbody>
             {data.map((categoriaentrada) => (
-                <tr key={categoriaentrada.I_IDCATENTRADA}>    
+                <tr key={categoriaentrada.I_IDCATENTRADA}>   
                 <td>{categoriaentrada.S_NBCATENTRADA}</td>
                 <td>{formatearFecha(categoriaentrada.D_FECHAHRAINI)}</td>
                 <td>{formatearFecha(categoriaentrada.D_FECHAHRAFIN)}</td>

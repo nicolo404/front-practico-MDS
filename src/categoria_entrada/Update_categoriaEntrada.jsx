@@ -5,6 +5,7 @@ import { get_tbl_tipoentrada } from "../services/tbl_tipoentrada";
 import Main from "../components/Menu";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import { set } from "date-fns";
 const Update_categoriaEntrada = () => {
     const {id} = useParams();
     const [categoria, setCategoria] = React.useState({
@@ -22,23 +23,17 @@ const Update_categoriaEntrada = () => {
         S_USARLISTA: ""
     }); 
     const [tipoentrada, setTipoentrada] = React.useState([]);
-    const [fecha, setFecha] = React.useState("");
-    const [hora, setHora] = React.useState("");
-
     React.useEffect(() => {
         get_tbl_tipoentrada().then((response) => {
-            setTipoentrada(response);
+        setTipoentrada(response);
         });
     }, [id]);
     React.useEffect(() => {
         get_tbl_categoriaentradaById(id).then((response) => {
-            //truncarfecha
-            truncarFecha(response.D_FECHAHRAINI);
-            //truncarhora
-            truncarHora(response.D_FECHAHRAINI);
             //categoria..
+            response.D_FECHAHRAINI = formatearFecha(response.D_FECHAHRAINI);
+            response.D_FECHAHRAFIN = formatearFecha(response.D_FECHAHRAFIN);
             setCategoria(response);
-            
         });
     }, [id]);
     const handleChange = (e) => {
@@ -47,45 +42,49 @@ const Update_categoriaEntrada = () => {
             [e.target.name]: e.target.value,
         });
     };
-    const truncarFecha = (date) => {
-        const fechaDate = new Date(date);
-        console.log("fechaDate: "+fechaDate);
-        const anio = fechaDate.getFullYear();
-        const mes = fechaDate.getMonth() + 1;
-        console.log("mes: "+mes)
-        const dia = fechaDate.getDate();
-        if(mes<10 && dia > 9){
-            setFecha(""+anio+"-0"+mes+"-0"+dia);
-        }
-        if(dia<10 && mes>9){
-            setFecha(""+anio+"-"+mes+"-0"+dia);
-        }
-        if(mes<10 && dia<10){
-            setFecha(""+anio+"-0"+mes+"-0"+dia);
-        }
-        const fechaTruncada = ""+anio+"-0"+mes+"-0"+dia;
-        const fechaFormateada = new Date(fechaTruncada).toISOString().split("T")[0]; // formato yyyy-mm-dd
-        setFecha(fechaFormateada);
-    };
-    const truncarHora = (date) => {
-        console.log("hora: "+date);
-        const horaTruncada = date.split("T")[1].split(".")[0];
-        console.log("hora truncada:"+horaTruncada);
-        setHora(horaTruncada);
-        console.log(hora)
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("put_tbl_categoriaentrada");
         console.log(categoria);
-        put_tbl_categoriaentrada(id, categoria).then(() => {
-            Swal.fire("Categoria Entrada Actualizada!", "Tu categoria entrada ha sido actualizada.", "success");
+
+        const nuevaCategoria = {
+            ...categoria,
+            D_FECHAHRAINI: reemplazarT(categoria.D_FECHAHRAINI),
+            D_FECHAHRAFIN: reemplazarT(categoria.D_FECHAHRAFIN),
+        };
+        console.log("nuevaCategoria");
+        console.log(nuevaCategoria);
+        put_tbl_categoriaentrada(id,nuevaCategoria).then(() => {
+            Swal.fire({
+                icon: "success",
+                title: "Categoria Entrada Actualizada Exitosamente!",
+                showConfirmButton: false,
+                timer: 2000,
+            });
             setTimeout(() => {
                 window.location.href = "/tbl_categoriaentrada";
-            }, 1500);
+            }, 1150);
         });
+    };   
+    // formatear fecha para que se muestre en el input fecha
+    const formatearFecha = (date) => {
+        console.log("date");
+        console.log(date);
+        const fechaformateada = date.split('.')[0];
+        console.log("fechaformateada");
+        console.log(fechaformateada);        
+        return fechaformateada;
     };
+
+    // reemplazar la T por un espacio en blanco
+    const reemplazarT = (date) => {
+        console.log("date");
+        console.log(date);
+        const fechaformateada = date.replace('T', ' ');
+        return fechaformateada;
+    };
+
     if (!categoria) return null;
     return (
         <div className="main">
@@ -108,14 +107,14 @@ const Update_categoriaEntrada = () => {
         <label>
         Fecha y Hora Inicio:
         </label>
-        <input type="date" className="input-fecha" defaultValue={fecha || null || "" || undefined}/>
-        <input type="time" className="input-tiempo" defaultValue={hora || null || "" || undefined}/>
-        <input type="datetime" name="D_FECHAHRAINI" value={categoria.D_FECHAHRAINI} onChange={handleChange} className="input-new-update-cat"/>
+        <input type="datetime-local" name="D_FECHAHRAINI" value={categoria.D_FECHAHRAINI} onChange={handleChange} className="D_FECHAHRAINI"/>
+        
         <br/>
         <label>
         Fecha y Hora Fin:
         </label>
-        <input type="datetime" name="D_FECHAHRAFIN" value={categoria.D_FECHAHRAFIN} onChange={handleChange} className="input-new-update-cat"/>
+        <input type="datetime-local" name="D_FECHAHRAFIN" value={categoria.D_FECHAHRAFIN} onChange={handleChange} className="D_FECHAHRAFIN"/>
+        
         <br />
         <label>
         Cantidad Entrada Defecto:
@@ -145,7 +144,7 @@ const Update_categoriaEntrada = () => {
         <label>
         Valor:
         </label>
-        <input type="text" name="I_VALOR" value={categoria.I_VALOR} onChange={handleChange} className="input-new-update-cat"/>
+        <input type="number" name="I_VALOR" value={categoria.I_VALOR} onChange={handleChange} className="input-new-update-cat"/>
         <br />
         <label>
         Imagen:
@@ -159,4 +158,4 @@ const Update_categoriaEntrada = () => {
     );
 }
 
-export default Update_categoriaEntrada;
+export default Update_categoriaEntrada
