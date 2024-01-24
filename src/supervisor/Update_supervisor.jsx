@@ -10,7 +10,6 @@ const Update_supervisor = () => {
     const [supervisor, setSupervisor] = React.useState({
         i_activo: 0,
         i_admin: 0,
-        i_idsupervisor: 0,
         i_pinsupervisor: 0,
         s_nombresupervisor: "",
         s_rutsupervisor: "",
@@ -63,15 +62,11 @@ const Update_supervisor = () => {
                         <option value={1}>Activar</option>
                     </select>
                     <br />
-                    <label>
-                        ID Supervisor:
-                    </label>
-                    <input type="text" name="i_idsupervisor" value={supervisor.i_idsupervisor} onChange={handleChange} className="input-new-update-user" />
                     <br />
                     <label>
                         Pin Supervisor:
                     </label>
-                    <input type="text" name="i_pinsupervisor" value={supervisor.i_pinsupervisor} onChange={handleChange} className="input-new-update-user" />
+                    <input type="password" name="i_pinsupervisor" value={supervisor.i_pinsupervisor} onChange={handleChange} className="input-new-update-user" />
                     <br />
                     <label>
                         Nombre Supervisor:

@@ -50,6 +50,8 @@ const Tabla_categoriaEntrada = () => {
         <div id="contenido-cat-entrada">
         <h1 id="titulo-tipo-entrada">Tabla Categoria Entrada</h1>
         <button  ><Link to={`crear-categoria/${lastId}`}>Agregar Categoria ➕</Link></button>
+        <div className="tabla-cat-divi">
+
         <table id="tabla-cat-entrada">
             <thead>
             <tr>   
@@ -87,6 +89,7 @@ const Tabla_categoriaEntrada = () => {
             ))}
             </tbody>
         </table>
+        </div>
         </div>
         </div>
     );

@@ -48,7 +48,6 @@ const Crear_avisomail = () => {
             [e.target.name]: e.target.value,
         });
     };
-
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("puit")
@@ -65,8 +64,7 @@ const Crear_avisomail = () => {
             setTimeout(() => {
                 window.location.href = "/tbl_avisomail";
             }, 1100);
-        });
-        
+        });    
     };
     return (
         <div className="main">

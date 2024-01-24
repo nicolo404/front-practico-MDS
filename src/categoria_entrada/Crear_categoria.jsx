@@ -64,7 +64,7 @@ const Crear_categoria = () => {
         });
         return id;
     }; 
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const nuevaCategoria = {
@@ -73,7 +73,9 @@ const Crear_categoria = () => {
             D_FECHAHRAINI: truncarDateTime(fecha),
             D_FECHAHRAFIN: truncarDateTime(fecha2),
         };  
+        console.log("nueva categoria");
         console.log(nuevaCategoria);
+        
         post_tbl_categoriaentrada(nuevaCategoria).then(() => {
             Swal.fire({
                 icon: "success",
@@ -81,10 +83,8 @@ const Crear_categoria = () => {
                 showConfirmButton: false,
                 timer: 1500,
             });
-            setTimeout(() => {
-                window.location.href = "/tbl_categoriaentrada";
-            }, 1050);
-        }); 
+        });
+         
         }
 
     return (

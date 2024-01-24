@@ -102,6 +102,7 @@
     height: 93.8vh;
     background-color: #fff;
     padding: 25px;
+    overflow-y: auto;
   }
   #contenido-crear-editar-categoria{
     display: flex;
@@ -122,21 +123,26 @@
     width: 60vw;
     margin: 20px auto;
     color: #333;
-
   }
   #tabla-tipo-entrada{
     width: 60vw;
     margin: 20px auto;
     color: #333;
     overflow-y:scroll;
-    height: 400px;
+    height: 80vh;
   }
-  #tabla-cat-entrada tbody{
+#tabla-cat-divi{
     width: 60vw;
     margin: 20px auto;
     color: #333;
     overflow-y: auto;
-    height: 70%;
+    height: 80vh;
+}
+  #tabla-cat-entrada{
+    width: 60vw;
+    margin: 20px auto;
+    color: #333;
+    height: 0%;
   }
   #tabla-supervisor{
     width: 60vw;
