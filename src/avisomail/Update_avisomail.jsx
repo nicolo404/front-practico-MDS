@@ -9,8 +9,7 @@ const Update_avisomail = () => {
     const{ id } = useParams();
     const [parametro, setParametro] = React.useState([]);
     const [avisomail, setAvisomail] = React.useState({
-        i_idpatron: 0,
-        i_activo: 0,
+        i_activo: null,
         s_grMail: null,
         i_prohibe: 0,
         s_nombre: "",
@@ -18,10 +17,7 @@ const Update_avisomail = () => {
     });
     React.useEffect(() => {
         get_tbl_avisomailById(id).then((response) => {
-            console.log("aviso email use efectt: ")
-            console.log(response);
             setAvisomail(response);
-
         });
     }, [id]);
     React.useEffect(() => {
@@ -35,7 +31,6 @@ const Update_avisomail = () => {
             ...avisomail,
             [e.target.name]: e.target.value,
         });
-        console.log(avisomail);
     };
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -56,23 +51,11 @@ const Update_avisomail = () => {
             <div className="contenido-crear-usuario">
                 <h1 className="titulo-crear-update">Editar Aviso Email</h1>
                 <form onSubmit={handleSubmit} className="form-new-update-user ">
-                    <label>
-                        ID Patron:
-                    </label>
-                    <input
-                        type="number"
-                        name="i_idpatron"
-                        className="input-new-update-user"
-                        placeholder="ID Patron"
-                        onChange={handleChange}
-                        value={avisomail.i_idpatron}
-                        required
-                    />
                     <br />
                     <label>
                         Activo:
                     </label>
-                    <select name="i_activo" value={avisomail.i_activo} onChange={handleChange} className="input-new-update-user">
+                    <select name="i_activo" value={avisomail.i_activo || null || ""} onChange={handleChange} className="input-new-update-user">
                         <option value={0}>No</option>
                         <option value={1}>Si</option>
                     </select>
@@ -80,8 +63,8 @@ const Update_avisomail = () => {
                     <label>
                         Email:
                     </label>
-                    <select name="s_grMail" value={avisomail.s_grMail} onChange={handleChange} className="input-new-update-user">
-                        <option value={null}>--Seleccione--</option>
+                    <select name="s_grMail" value={avisomail.s_grMail || null || ""} onChange={handleChange} className="input-new-update-user">
+                        <option value={null || ""}>--Seleccione--</option>
                         {parametro.map((parametro) => (
                             <option key={parametro.I_IDPARAMETRO} value={parametro.S_NBPARAMETRO}>{parametro.S_NBPARAMETRO}</option>
                         ))}

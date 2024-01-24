@@ -64,7 +64,7 @@ const Crear_categoria = () => {
         });
         return id;
     }; 
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         const nuevaCategoria = {
@@ -204,6 +204,7 @@ const Crear_categoria = () => {
         </div>
     );
 }
+
 export default Crear_categoria;
 
 

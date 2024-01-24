@@ -1,12 +1,31 @@
 import React from "react";
-import { post_tbl_avisomail } from "../services/tbl_avisomail";
+import { post_tbl_avisomail, get_tbl_avisomail} from "../services/tbl_avisomail";
 import {get_tbl_parametro} from "../services/tbl_parametro";
 import "../App.css"
 import Menu from "../components/Menu";
 import Swal from "sweetalert2";
-
+import { set } from "date-fns";
+import { id } from "date-fns/locale";
 
 const Crear_avisomail = () => {
+    const [data, setData] = React.useState(null);
+    React.useEffect(() => {
+        get_tbl_avisomail().then((response) => {
+            setData(response);
+        });
+    }, []);
+    // funcion para obtener el ultimo id de la tabla avisomail
+    const ultimo_id = () => {
+        if (!data) return null;
+        let ultimo_id = 0;
+        data.forEach((avisomail) => {
+            if (avisomail.i_idpatron > ultimo_id) {
+                ultimo_id = avisomail.i_idpatron;
+            }
+        });
+        return ultimo_id;
+    };
+
     const [parametro, setParametro] = React.useState([]);
     const [avisomail, setAvisomail] = React.useState({
         i_activo: 0,
@@ -20,8 +39,6 @@ const Crear_avisomail = () => {
     React.useEffect(() => {
         get_tbl_parametro().then((response) => {
             setParametro(response);
-            console.log("parametro: ")
-            console.log(response);
         });
     }, []);
 
@@ -34,15 +51,22 @@ const Crear_avisomail = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("aviso email2: ")
-        console.log(avisomail);
-
-        post_tbl_avisomail(avisomail).then(() => {
+        console.log("puit")
+        console.log(avisomail)
+        const avisomail2 = {
+            ...avisomail,
+            i_idpatron: ultimo_id() + 1,
+        };
+        console.log("nueva Categoria")
+        console.log(avisomail2)
+        
+        post_tbl_avisomail(avisomail2).then(() => {
             Swal.fire("Aviso Email Creado!", "Tu aviso email ha sido creado.", "success");
             setTimeout(() => {
                 window.location.href = "/tbl_avisomail";
             }, 1100);
-        });    
+        });
+        
     };
     return (
         <div className="main">
@@ -51,15 +75,6 @@ const Crear_avisomail = () => {
         <h1 id="titulo-crear-update">Crear Aviso Email</h1>
         <form onSubmit={handleSubmit} className="form-new-update-user">
             
-                <label>ID Patron</label>
-                <input
-                    type="number"
-                    name="i_idpatron"
-                    className="input-new-update-user"
-                    placeholder="ID Patron"
-                    onChange={handleChange}
-                    required
-                />
             
                 <label>Email</label>
                 <select
@@ -68,14 +83,14 @@ const Crear_avisomail = () => {
                     onChange={handleChange}
                     required
                 >
-                    <option value="default">--Seleccione--</option>
+                    <option value={null}>--Seleccione--</option>
                     {parametro.map((parametro) => (
                         <option key={parametro.I_IDPARAMETRO} value={parametro.S_NBPARAMETRO}>
                             {parametro.S_NBPARAMETRO}
                         </option>
                     ))}
                 </select>
-                
+
                 <label>Activo</label>
                 <select
                     className="input-new-update-cat"
