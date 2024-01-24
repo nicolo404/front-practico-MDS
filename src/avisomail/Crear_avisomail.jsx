@@ -1,10 +1,13 @@
 import React from "react";
 import { post_tbl_avisomail } from "../services/tbl_avisomail";
+import {get_tbl_parametro} from "../services/tbl_parametro";
 import "../App.css"
 import Menu from "../components/Menu";
 import Swal from "sweetalert2";
 
+
 const Crear_avisomail = () => {
+    const [parametro, setParametro] = React.useState([]);
     const [avisomail, setAvisomail] = React.useState({
         i_activo: 0,
         i_idpatron: 0,
@@ -13,6 +16,14 @@ const Crear_avisomail = () => {
         s_nombre:"",
         s_rut:""
     });
+
+    React.useEffect(() => {
+        get_tbl_parametro().then((response) => {
+            setParametro(response);
+            console.log("parametro: ")
+            console.log(response);
+        });
+    }, []);
 
     const handleChange = (e) => {
         setAvisomail({
@@ -23,91 +34,98 @@ const Crear_avisomail = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        /*
+        console.log("aviso email2: ")
+        console.log(avisomail);
+
         post_tbl_avisomail(avisomail).then(() => {
-            Swal.fire({
-                icon: "success",
-                title: "Email creado exitosamente",
-                showConfirmButton: false,
-                timer: 1500,
-            });
-            window.location.href = "/tbl_avisomail";
-        });
-        */
+            Swal.fire("Aviso Email Creado!", "Tu aviso email ha sido creado.", "success");
+            setTimeout(() => {
+                window.location.href = "/tbl_avisomail";
+            }, 1100);
+        });    
     };
     return (
         <div className="main">
         <Menu></Menu>
         <div className="contenido-crear-usuario">
-        <h1 id="titulo-avisomail">Crear Aviso Email</h1>
+        <h1 id="titulo-crear-update">Crear Aviso Email</h1>
         <form onSubmit={handleSubmit} className="form-new-update-user">
-            <div className="form-group">
-                <label htmlFor="I_IDPATRON">ID Patron</label>
+            
+                <label>ID Patron</label>
                 <input
                     type="number"
-                    name="I_IDPATRON"
-                    id="I_IDPATRON"
-                    className="form-control"
+                    name="i_idpatron"
+                    className="input-new-update-user"
                     placeholder="ID Patron"
                     onChange={handleChange}
                     required
                 />
-            </div>
-            <div className="form-group">
-                <label htmlFor="S_EMAIL">Email</label>
-                <input
-                    type="email"
-                    name="S_EMAIL"
-                    id="S_EMAIL"
-                    className="form-control"
-                    placeholder="Email"
+            
+                <label>Email</label>
+                <select
+                    className="input-new-update-cat"
+                    name="s_grMail"
                     onChange={handleChange}
                     required
-                />
-            </div>
-            <div className="form-group">
-                <label htmlFor="I_ACTIVO">Activo</label>
-                <input
-                    type="number"
-                    name="I_ACTIVO"
-                    id="I_ACTIVO"
-                    className="form-control"
-                    placeholder="Activo"
+                >
+                    <option value="default">--Seleccione--</option>
+                    {parametro.map((parametro) => (
+                        <option key={parametro.I_IDPARAMETRO} value={parametro.S_NBPARAMETRO}>
+                            {parametro.S_NBPARAMETRO}
+                        </option>
+                    ))}
+                </select>
+                
+                <label>Activo</label>
+                <select
+                    className="input-new-update-cat"
+                    name="i_activo"
                     onChange={handleChange}
                     required
-                />
-            </div>
-            <div className="form-group">
-                <label htmlFor="I_PROHIBE">Prohibe</label>
-                <input
-                    type="number"
-                    name="I_PROHIBE"
-                    id="I_PROHIBE"
-                    className="form-control"
-                    placeholder="Prohibe"
+                >
+                    <option value="default">--Seleccione--</option>
+                    <option value={0}>No</option>
+                    <option value={1}>Si</option>
+                </select>
+           
+                <label>Prohibe</label>
+                <select
+                    className="input-new-update-cat"
+                    name="i_prohibe"
                     onChange={handleChange}
                     required
-            />
-            </div>
-            <div className="form-group">
-                <label htmlFor="S_NOMBRE">Nombre</label>
+                >
+                    <option value="default">--Seleccione--</option>
+                    <option value={0}>No</option>
+                    <option value={1}>Si</option>
+                </select>
+           
+                <label>Nombre</label>
                 <input
                     type="text"
-                    name="S_NOMBRE"
-                    id="S_NOMBRE"
-                    className="form-control"
+                    name="s_nombre"
+                    className="input-new-update-user"
                     placeholder="Nombre"
                     onChange={handleChange}
                     required
-            />
-            </div>
-            <button type="submit" className="btn btn-primary">
+                />
+                <label>Rut</label>  
+                <input
+                    type="text"
+                    name="s_rut"
+                    className="input-new-update-user"
+                    placeholder="Rut"
+                    onChange={handleChange}
+                    required
+                />    
+
+            <button type="submit">
                 Crear
             </button>
-        </form>
-        
+        </form>    
         </div>
         </div>
     );  
 }
+
 export default Crear_avisomail;

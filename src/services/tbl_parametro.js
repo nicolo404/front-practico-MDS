@@ -4,7 +4,6 @@ const baseURL = "http://localhost:3001/api/";
 
 const get_tbl_parametro = async () => {
     const { data } = await axios.get(baseURL+"tbl_parametro/");
-    console.log(data);
     return data;
 }
 

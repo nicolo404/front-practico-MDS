@@ -30,8 +30,8 @@ const Crear_supervisor = () => {
                 window.location.href = "/tbl_supervisor";
             }, 1100);
         });
-    }
-
+    };
+    
     return (
         <div className="main">
             <Menu></Menu>
