@@ -26,7 +26,6 @@ const Tabla_tipoEntrada = () => {
             <tr>
                 <th>ID Tipo Entrada</th>
                 <th>Nombre Tipo Entrada</th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -34,9 +33,6 @@ const Tabla_tipoEntrada = () => {
                 <tr key={tipoentrada.I_IDTIPOENTRADA}>
                 <td>{tipoentrada.I_IDTIPOENTRADA}</td>
                 <td>{tipoentrada.S_NBTIPOENTRADA}</td>
-                <td>
-                    <button><Link to={`editar-usuario/${tipoentrada.I_IDTIPOENTRADA}`}>Editar</Link></button>
-                </td>
                 </tr>
             ))}
             </tbody>
