@@ -47,9 +47,9 @@ const Usuario = () => {
             <thead>
             <tr>
                 <th>ID PERFIL</th>
-                <th>ID USUARIO</th>
-                <th>PASS</th>
-                <th>USUARIO</th>
+                <th>Id Usuario</th>
+                <th>Password</th>
+                <th>Nombre Usuario</th>
                 <th></th> 
             </tr>
             </thead>
